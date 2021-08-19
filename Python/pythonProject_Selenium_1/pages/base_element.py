@@ -25,6 +25,7 @@ class BaseElement(object):
        element.click()
        return None
 
+   @property
    def text(self):
        text =self.web_element.text
        return text
