@@ -5,7 +5,10 @@ from selenium.webdriver.support import expected_conditions as EC
 class BaseElement(object):
     def __init__(self, driver, locator):
         self.driver = driver
+
         self.locator = locator
+
+
         self.web_element = None
         self.find()
 
