@@ -10,6 +10,7 @@ from selenium.webdriver.support import expected_conditions as EC
 class HomePage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
+        self.driver.get(TestData.HOME_URL)
 
         self.welcome_link_id = Locators.welcome_link_id
         self.logout_link_xpath = Locators.logout_link_xpath

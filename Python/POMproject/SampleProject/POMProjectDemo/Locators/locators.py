@@ -1,9 +1,13 @@
+from collections import namedtuple
+
+Locator = namedtuple('Locator', ['by', 'value'])
+
 
 
 class Locators():
+    #Restet password locators
 
     #login page locators
-
     username_textbox_id = "txtUsername"
     password_textbox_id = "txtPassword"
     login_button_id = "btnLogin"
