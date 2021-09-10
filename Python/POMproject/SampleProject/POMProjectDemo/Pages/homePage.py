@@ -12,13 +12,20 @@ class HomePage(BasePage):
         super().__init__(driver)
         self.driver.get(TestData.HOME_URL)
 
-        self.welcome_link_id = Locators.welcome_link_id
+        self.welcome_link_xpath = Locators.welcome_link_xpath
         self.logout_link_xpath = Locators.logout_link_xpath
 
+
     def click_welcome(self):
-        self.driver.find_element_by_id(self.welcome_link_id).click()
+        self.driver.find_element_by_xpath(self.welcome_link_xpath).click()
 
     def click_logout(self):
+        #self.driver.find_element_by_xpath(self.logout_link_xpath).click()
+        element = WebDriverWait(self.driver, 5).until(
+            EC.presence_of_element_located((By.XPATH, self.logout_link_xpath)))
+        self.driver.execute_script("arguments[0].click();", element)
+
+    def is_displayed(self):
         #self.driver.find_element_by_xpath(self.logout_link_xpath).click()
         element = WebDriverWait(self.driver, 5).until(
             EC.presence_of_element_located((By.XPATH, self.logout_link_xpath)))

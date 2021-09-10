@@ -2,6 +2,9 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from SampleProject.POMProjectDemo.Locators.locators import Locator
+from SampleProject.POMProjectDemo.Locators.locators import Locators
+from selenium.webdriver.common.by import By
 
 
 
@@ -25,15 +28,17 @@ class BasePage():
         return element.text
 
     def is_enabled(self, by_locator):
-        element = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(by_locator))
+        element = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(by_locator)).text
         return bool(element)
 
-    def get_title(self,title):
-        WebDriverWait(self.driver,10).until(EC.title_is(title))
+
 
     def attribute(self, attr_name):
         attribute = self.web_element.get_attribute(attr_name)
         return attribute
+
+    def get_title(self, title):
+        WebDriverWait(self.driver, 10).until(EC.title_is(title))
 
 
 

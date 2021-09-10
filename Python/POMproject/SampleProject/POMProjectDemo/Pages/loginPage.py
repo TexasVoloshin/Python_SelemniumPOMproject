@@ -41,3 +41,5 @@ class LoginPage(BasePage):
     def check_forgot_password_page_open(self):
         fp_url = "https://opensource-demo.orangehrmlive.com/index.php/auth/requestPasswordResetCode"
         return fp_url
+
+

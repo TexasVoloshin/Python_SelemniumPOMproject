@@ -8,18 +8,19 @@ class TestForgotPassword(BaseTest):
     def test_01_input_user_name(self):
         self.forgotPassword = ForotYuorPasswordPage(self.driver)
         self.forgotPassword.enter_username_input.input_text(TestData.USER_NAME)
-        time.sleep(2)
+        self.forgotPassword.reset_password_button.click()
+        msg = self.forgotPassword.HR_warning_message()
+        assert msg == "There is a password reset request already in the system.\nClose"
 
     def test_02_input_nonexisitng_user_name(self):
         self.forgotPassword = ForotYuorPasswordPage(self.driver)
         self.forgotPassword.enter_username_input.input_text("Admon33")
         self.forgotPassword.reset_password_button.click()
-        HRtext = "Please contact HR admin in order to reset the password"
-
-        time.sleep(2)
+        msg = self.forgotPassword.HR_warning_message().text
+        assert msg == "Please contact HR admin in order to reset the password\nClose"
 
     def test_03_cancel_reset_password(self):
-        home_url = "https://opensource-demo.orangehrmlive.com/index.php/auth/login"
+        home_url = TestData.HOME_URL
         self.forgotPassword = ForotYuorPasswordPage(self.driver)
         self.forgotPassword.cancel_button.click()
         current_url = (self.driver.current_url)
