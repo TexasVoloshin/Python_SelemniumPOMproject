@@ -35,3 +35,14 @@ class BaseElement(object):
     def text(self):
         text = self.web_element.text
         return text
+
+    @property
+    def is_displayed(self):
+        element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located(locator=self.locator)
+        )
+        element.is_displayed()
+        return None
+
+
+

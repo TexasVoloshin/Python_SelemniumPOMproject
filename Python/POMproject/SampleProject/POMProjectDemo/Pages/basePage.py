@@ -12,6 +12,7 @@ class BasePage():
 
     def __init__(self, driver):
         self.driver = driver
+        self.web_element = None
 
 
 
@@ -31,6 +32,12 @@ class BasePage():
         element = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(by_locator)).text
         return bool(element)
 
+    def find(self):
+        element = WebDriverWait(self.driver, 10).until(
+            EC.visibility_of_element_located(locator=self.locator)
+        )
+        self.web_element = element
+        return None
 
 
     def attribute(self, attr_name):
