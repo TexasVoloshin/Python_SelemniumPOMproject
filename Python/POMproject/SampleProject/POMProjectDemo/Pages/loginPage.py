@@ -1,6 +1,10 @@
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+
 from SampleProject.POMProjectDemo.Config.config import TestData
 from SampleProject.POMProjectDemo.Pages.basePage import BasePage
 from SampleProject.POMProjectDemo.Locators.locators import Locators
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class LoginPage(BasePage):
@@ -16,7 +20,7 @@ class LoginPage(BasePage):
         self.login_button_id = Locators.login_button_id
         self.invalid_credentials_xpath = "//span[@id='spanMessage']"
         self.forgot_password_link_xpath = "//div/div[@id='forgotPasswordLink']/a[text()='Forgot your password?']"
-
+        self.welcom_menu = Locators.welcome_link_xpath
     def enter_username(self, username):
         self.driver.find_element_by_id(self.username_textbox_id).clear()
         self.driver.find_element_by_id(self.username_textbox_id).send_keys(username)
@@ -41,5 +45,9 @@ class LoginPage(BasePage):
     def check_forgot_password_page_open(self):
         fp_url = "https://opensource-demo.orangehrmlive.com/index.php/auth/requestPasswordResetCode"
         return fp_url
+
+
+    def welcome_menu_exist(self):
+        self.driver.find_element_by_xpath(self.welcom_menu).is_displayed()
 
 
